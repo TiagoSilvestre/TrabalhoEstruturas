@@ -1,69 +1,81 @@
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Produto {
-    
-    private int Quantidade;
-    private String Nome;
-    private double Preco;
-    private int Codigo;
-    private Categoria catagoria;
+
+    private int codigo;
+    private String nome;
+    private int quantidade;
+    private double preco;
+    private Categoria categoria;
     private Calendar vencimento;
-    
-    
-    public Produto(int Quantidade, String Nome, double Preco, int Codigo, Categoria catagoria, Calendar vencimento) {
-        this.Quantidade = Quantidade;
-        this.Nome = Nome;
-        this.Preco = Preco;
-        this.Codigo = Codigo;
-        this.catagoria = catagoria;
+
+    public Produto(int codigo, String nome, int quantidade, double preco, Categoria categoria, Calendar vencimento) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.preco = preco;
+        this.categoria = categoria;
         this.vencimento = vencimento;
-    }
-    
-    
-    
-
-    public int getQuantidade() {
-        return Quantidade;
-    }
-
-    public void setQuantidade(int Quantidade) {
-        this.Quantidade = Quantidade;
-    }
-
-    public String getNome() {
-        return Nome;
-    }
-
-    public void setNome(String Nome) {
-        this.Nome = Nome;
-    }
-
-    public double getPreco() {
-        return Preco;
-    }
-
-    public void setPreco(double Preco) {
-        this.Preco = Preco;
     }
 
     public int getCodigo() {
-        return Codigo;
+        return codigo;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public Categoria getCatagoria() {
-        return catagoria;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCatagoria(Categoria catagoria) {
-        this.catagoria = catagoria;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Calendar getVencimento() {
+        return vencimento;
+    }
+
+    public void setVencimento(Calendar vencimento) {
+        this.vencimento = vencimento;
+    }
+
     
     
-    
-    
+    @Override
+    public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+        String dataFormatada = format.format(vencimento.getTime());
+        return "Produto{" + "Quantidade=" + quantidade + ", Nome=" + nome + ", Preco=" + preco + ", Codigo=" + codigo + ", categoria=" + categoria + ", vencimento=" + dataFormatada + '}';
+    }
 }
