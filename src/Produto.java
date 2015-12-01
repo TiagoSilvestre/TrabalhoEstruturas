@@ -69,8 +69,6 @@ public class Produto {
     public void setVencimento(Calendar vencimento) {
         this.vencimento = vencimento;
     }
-
-    
     
     @Override
     public String toString() {

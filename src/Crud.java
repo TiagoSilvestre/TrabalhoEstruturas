@@ -40,7 +40,7 @@ public class Crud {
         }
     }
 
-    public List<Produto> get(Categoria categoria) {
+    private List<Produto> get(Categoria categoria) {
         return Estoque.getInstance().getOrDefault(categoria, null);
     }
 

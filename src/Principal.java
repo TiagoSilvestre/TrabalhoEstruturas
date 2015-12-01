@@ -10,7 +10,6 @@ public class Principal {
     public static void main(String[] args) {
 
         Crud cr = new Crud();
-
         Calendar c1 = Calendar.getInstance();
         
         c1.set(2015, 10, 6);
