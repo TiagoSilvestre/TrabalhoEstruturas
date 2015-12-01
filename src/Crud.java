@@ -1,6 +1,9 @@
 
 import static java.lang.System.out;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Queue;
 
@@ -12,12 +15,13 @@ public class Crud {
 
         //caso exista, adiciona um novo elemento
         if (existe) {
-            Estoque.getInstance().get(prod.getCategoria()).offer(prod);
+            get(prod.getCategoria()).add(prod);
+            ordenarPorVencimento(prod.getCategoria());
             return;
         }
         //senão instancia uma nova lista e adiciona o elemento 
-        Queue<Produto> list = new ArrayDeque<>();
-        list.offer(prod);
+        List<Produto> list = new ArrayList<>();
+        list.add(prod);
         Estoque.getInstance().put(prod.getCategoria(), list);
     }
 
@@ -28,7 +32,7 @@ public class Crud {
             return;
         }
 
-        Queue<Produto> produtos = get(categoria);
+        List<Produto> produtos = get(categoria);
         for (Produto produto : produtos) {
             if (produto.getCodigo() == codigo) {
                 produtos.remove(produto);
@@ -36,23 +40,17 @@ public class Crud {
         }
     }
 
-    public Queue<Produto> get(Categoria categoria) {
+    public List<Produto> get(Categoria categoria) {
         return Estoque.getInstance().getOrDefault(categoria, null);
     }
 
-    public Produto get(Categoria categoria, int codigo) {
-        boolean existe = categoriaExiste(categoria);
-
-        if (existe) {
-            Queue<Produto> produtos = Estoque.getInstance().get(categoria);
-            for (Produto p : produtos) {
-                if (p.getCodigo() == codigo) {
-                    return p;
-                }
+    private void ordenarPorVencimento(Categoria categoria){
+        Collections.sort(get(categoria), new Comparator<Produto>() {
+            @Override
+            public int compare(Produto p1, Produto p2) {
+               return p2.getVencimento().compareTo(p1.getVencimento());
             }
-        }
-
-        return null;
+        });
     }
 
     //verifica se existe a categoria 
@@ -62,7 +60,7 @@ public class Crud {
 
     //imprime todos os dados de todas as categorias
     public void imprimir() {
-        for (Queue<Produto> produtos : Estoque.getInstance().values()) {
+        for (List<Produto> produtos : Estoque.getInstance().values()) {
             for (Produto p : produtos) {
                 out.println(p.getCategoria());
                 out.println(p.toString());

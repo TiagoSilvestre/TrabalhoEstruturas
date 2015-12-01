@@ -7,11 +7,11 @@ import java.util.Queue;
 
 public class Estoque {
     
-    private static Map<Categoria, Queue<Produto>> estoque;
+    private static Map<Categoria, List<Produto>> estoque;
      
-    public static Map<Categoria, Queue<Produto>> getInstance(){
+    public static Map<Categoria, List<Produto>> getInstance(){
         if(estoque == null){
-            estoque = new HashMap<Categoria, Queue<Produto>>();
+            estoque = new HashMap<Categoria, List<Produto>>();
         } 
         
         return estoque;

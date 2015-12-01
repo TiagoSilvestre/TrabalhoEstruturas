@@ -74,8 +74,7 @@ public class Produto {
     
     @Override
     public String toString() {
-        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-        String dataFormatada = format.format(vencimento.getTime());
+        String dataFormatada = new SimpleDateFormat("yyyy-MM-dd").format(vencimento.getTime());
         return "Produto{" + "Quantidade=" + quantidade + ", Nome=" + nome + ", Preco=" + preco + ", Codigo=" + codigo + ", categoria=" + categoria + ", vencimento=" + dataFormatada + '}';
     }
 }
