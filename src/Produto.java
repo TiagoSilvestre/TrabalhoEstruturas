@@ -13,6 +13,9 @@ public class Produto {
     private Categoria categoria;
     private Calendar vencimento;
 
+    public Produto() {
+    }
+
     public Produto(int codigo, String nome, int quantidade, double preco, Categoria categoria, Calendar vencimento) {
         this.codigo = codigo;
         this.nome = nome;
@@ -69,10 +72,10 @@ public class Produto {
     public void setVencimento(Calendar vencimento) {
         this.vencimento = vencimento;
     }
-    
+
     @Override
     public String toString() {
-        String dataFormatada = new SimpleDateFormat("yyyy-MM-dd").format(vencimento.getTime());
-        return "Produto{" + "Quantidade=" + quantidade + ", Nome=" + nome + ", Preco=" + preco + ", Codigo=" + codigo + ", categoria=" + categoria + ", vencimento=" + dataFormatada + '}';
+        String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(vencimento.getTime());
+        return "Produto{ Codigo=" + codigo + ", Quantidade=" + quantidade + ", Nome=" + nome + ", Preco=" + preco + ", Codigo=" + codigo + ", categoria=" + categoria + ", vencimento=" + dataFormatada + '}';
     }
 }

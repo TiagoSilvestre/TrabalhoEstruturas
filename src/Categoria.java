@@ -11,5 +11,6 @@
 public enum Categoria {
     ARROZ,
     FEIJAO,
-    CHOCOLATE
+    CHOCOLATE,
+    NAO_SEI
 }
